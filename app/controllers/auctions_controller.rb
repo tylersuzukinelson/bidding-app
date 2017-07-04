@@ -45,7 +45,7 @@ class AuctionsController < ApplicationController
   def destroy
     # @auction = Auction.find params[:id]
     @auction.destroy
-    redirect_to auctions_path,notice: "Auction Deleted"
+    redirect_to auctions_path, alert: "Auction Deleted"
   end
 
   private

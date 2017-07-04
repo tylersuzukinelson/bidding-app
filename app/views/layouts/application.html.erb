@@ -9,6 +9,15 @@
   </head>
 
   <body>
+    <% if flash.any? %>
+     <hr>
+     <% if flash[:notice] %>
+       <div class="flash-notice"><%= flash[:notice] %></div>
+     <% elsif flash[:alert] %>
+       <div class="flash-alert"><%= flash[:alert] %></div>
+     <% end %>
+     <hr>
+   <% end %>
     <%= yield %>
   </body>
 </html>
