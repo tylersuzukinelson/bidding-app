@@ -1,0 +1,11 @@
+<%= form_for [@auction, bid]  do |f| %>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-4 pull-right">
+      <%= bid&.errors.full_messages %>
+      <%= f.text_field :bid %>
+      <%= f.submit "Bid" %>
+    </div>
+  </div>
+</div>
+<% end %>

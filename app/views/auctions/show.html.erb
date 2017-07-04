@@ -5,7 +5,7 @@
       <h4><%= @auction.title %></h4>
     </div>
     <div class="col--lg-1 pull-right" style="margin-right: 200px">
-      <p>Current Price: $ Last heighest bid</p>
+      <p>Current Price: $<%= @auction.bids.order(bid: :DESC).first.bid %></p>
     </div>
   </div>
 
@@ -17,5 +17,20 @@
       <p>Current Price<%= @auction.reserved_price %></p>
     </div>
   </div>
+
+  <%= link_to 'Edit', edit_auction_path(@auction) %>
+
+  | <%= link_to 'Delete', auction_path(@auction),
+                            method: :delete,
+                            data: {confirm: 'Are you sure?'} %>
+
+
+  <!-- <#%= @bid.errors.full_messages.join(', ') %> -->
+  <%= render'bids/form', bid: @bid %>
+
+<div id="bids">
+  <%= render 'bids/bids', bids: @bids %>
+</div>
+
 
 </div>

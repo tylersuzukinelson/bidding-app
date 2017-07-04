@@ -1,0 +1,13 @@
+<% bids&.each do |bid|%>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-4 pull-right">
+      $<%= bid.bid %>  at: <%= bid.created_at %>
+      <!-- <#%= link_to "Delete", [@auction, bid],
+      method: :delete,
+      remote: :true,
+      data: {confirm: 'Are you sure?'} %> -->
+    </div>
+  </div>
+</div>
+<% end %>

@@ -22,6 +22,8 @@ class AuctionsController < ApplicationController
 
   def show
     # @auction = Auction.find params[:id]
+    @bid = Bid.new
+    @bids = @auction.bids.order(created_at: :desc)
   end
 
   def edit
