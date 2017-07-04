@@ -1,0 +1,53 @@
+<%= @auction.errors.full_messages.join(', ') %>
+  <%= form_for @auction do |f|  %>
+    <div class="row">
+      <div class="col-lg-1">
+        <%= f.label :title %>
+      </div>
+      <div class="col-lg-1">
+        <%= f.text_field :title %>
+      </div>
+    </div> <br />
+
+    <div class="row">
+      <div class="col-lg-1">
+        <%= f.label :details %>
+      </div>
+      <div class="col-lg-1">
+        <%= f.text_area :details%>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-1">
+        <%= f.label :ends_on, "Ends On" %>
+      </div>
+      <div class="col-lg-1">
+        <%= f.text_field :ends_on, data:{ provide:'datepicker' }, placeholder: "    /   / ", size: '8px' %>
+        <script type="text/javascript">
+          $(document).ready(function(){
+            $('.datepicker').datepicker();
+          });
+        </script>
+        <!-- <label for='end_date'><i class="fa fa-calendar" aria-hidden="true"></i></label> -->
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-1">
+        <%= f.label :reserved_price %>
+      </div>
+      <div class="col-lg-1">
+        <%= f.text_field :reserved_price, placeholder: "500" %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-1">
+      </div>
+      <div class="col-lg-1">
+        <%= f.submit 'Save' %>
+      </div>
+    </div>
+    
+  <% end %>

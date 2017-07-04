@@ -1,0 +1,9 @@
+<h1>Index</h1>
+<div class="container">
+  <% @auctions.each do |auction| %>
+    <p><strong><%= link_to auction.title, auction_path(auction) %></strong></p>
+    <p><%= auction.details %></p>
+    <p><%= auction.ends_on %></p>
+    <p><%= auction.reserved_price %></p>
+  <% end %>
+</div>
