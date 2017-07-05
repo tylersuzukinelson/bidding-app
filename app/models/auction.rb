@@ -2,9 +2,6 @@ class Auction < ApplicationRecord
   has_many :bids, dependent: :destroy
   belongs_to :user
 
-
-
-
   validates :title, presence: true, uniqueness: { case_sensitive: false}
   validates :reserve_price, numericality: { greater_than_or_equal_to: :default_auction_price }
 

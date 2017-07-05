@@ -14,6 +14,7 @@
       <p><%= @auction.details %></p>
     </div>
 
+
     <% if user_signed_in? && current_user == @auction.user %>
     <%= link_to 'Edit', edit_auction_path(@auction) %>
 
