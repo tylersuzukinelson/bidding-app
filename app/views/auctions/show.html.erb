@@ -5,7 +5,7 @@
       <h4><%= @auction.title %></h4>
     </div>
     <div class="col--lg-1 pull-right" style="margin-right: 200px">
-      <p>Current Price: $<%= @auction.bids.order(bid: :DESC).first&.bid %></p>
+      <p>Current Price: <%= number_to_currency(@auction.bids.order(bid: :DESC).first&.bid) %></p>
     </div>
   </div>
 
@@ -13,27 +13,32 @@
     <div class="col--lg-1 pull-left" style="margin-left: 10px">
       <p><%= @auction.details %></p>
     </div>
-    <div class="col--lg-1 pull-right" style="margin-right: 200px">
-      <p>Current Price<%= @auction.reserved_price %></p>
+
+    <% if user_signed_in? && current_user == @auction.user %>
+    <%= link_to 'Edit', edit_auction_path(@auction) %>
+
+    | <%= link_to 'Delete', auction_path(@auction),
+                              method: :delete,
+                              data: {confirm: 'Are you sure?'} %>
+    <% end %>
+
+      <% if user_signed_in? && current_user != @auction.user %>
+        <%= @bid.errors.full_messages.join(', ') %>
+      <%= render'bids/form', bid: @bid %>
+      <% end %>
+
+    <div id="bids">
+      <%= render 'bids/bids', bids: @bids %>
     </div>
   </div>
 
-  <% if user_signed_in? && current_user == @auction.user %>
-  <%= link_to 'Edit', edit_auction_path(@auction) %>
 
-  | <%= link_to 'Delete', auction_path(@auction),
-                            method: :delete,
-                            data: {confirm: 'Are you sure?'} %>
-<% end %>
-
-  <% if user_signed_in? && current_user != @auction.user %>
-    <%= @bid.errors.full_messages.join(', ') %>
-  <%= render'bids/form', bid: @bid %>
+<% if user_signed_in? && current_user == @auction.user %>
+  <% if @auction.may_publish? %>
+    <%= link_to 'Publish', auction_publishings_path(@auction),
+                           method: :post,
+                           data: { confirm: 'Are you sure?' } %>
   <% end %>
-
-<div id="bids">
-  <%= render 'bids/bids', bids: @bids %>
-</div>
-
+<% end %>
 
 </div>
