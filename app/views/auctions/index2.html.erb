@@ -1,0 +1,7 @@
+<div class="container">
+  <% @auctions.each do |auction| %>
+    <% if auction.bids.present? %>
+      <p><strong><%= link_to auction.title, auction_path(auction) %></strong></p>
+    <% end %>
+  <% end %>
+</div>

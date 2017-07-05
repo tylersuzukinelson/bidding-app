@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   get 'users/create'
 
+  get '/auctions/index2', to: 'auctions#index2'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :auctions do
     resources :bids, only: [:create, :destroy]
@@ -13,4 +14,5 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new, :create] do
     delete :destroy, on: :collection
   end
+
 end

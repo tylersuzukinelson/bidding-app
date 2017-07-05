@@ -17,6 +17,8 @@
       Hello <%= current_user.first_name %>
 
       <%= link_to 'Sign Out', sessions_path, method: :delete  %>
+      |
+      <%= link_to 'Bidded Auctions', auctions_index2_path %>
       <% else %>
       |
       <%= link_to 'Sign In', new_session_path %>
