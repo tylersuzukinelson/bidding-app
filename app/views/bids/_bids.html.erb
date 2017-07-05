@@ -2,7 +2,7 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-4 pull-right">
-      $<%= bid.bid %>  at: <%= bid.created_at %>
+      <%= number_to_currency(bid.bid) %>  At: <%= bid.created_at %> By: <%= bid.user.full_name %>
       <!-- <#%= link_to "Delete", [@auction, bid],
       method: :delete,
       remote: :true,
