@@ -52,7 +52,7 @@ class AuctionsController < ApplicationController
   private
 
   def auction_params
-    params.require(:auction).permit([:title, :details, :ends_on, :reserved_price])
+    params.require(:auction).permit([:title, :details, :ends_on, :reserve_price])
   end
 
   def find_auction

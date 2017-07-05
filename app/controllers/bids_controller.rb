@@ -7,6 +7,7 @@ class BidsController < ApplicationController
       @bid.auction = @auction
       @bid.user = current_user
       if @bid.save
+        @auction.update_attributes(current_price: @bid.bid)
         redirect_to auction_path(@auction), notice: "Bid Created"
       else
         render 'auctions/show'

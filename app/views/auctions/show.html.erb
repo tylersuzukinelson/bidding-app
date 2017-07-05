@@ -5,7 +5,7 @@
       <h4><%= @auction.title %></h4>
     </div>
     <div class="col--lg-1 pull-right" style="margin-right: 200px">
-      <p>Current Price: <%= number_to_currency(@auction.bids.order(bid: :DESC).first&.bid) %></p>
+      <p>Current Price: <%= @auction.current_price || number_to_currency(@auction.bids.order(bid: :DESC).first&.bid) %></p>
     </div>
   </div>
 

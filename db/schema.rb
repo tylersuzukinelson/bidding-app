@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170704230513) do
+ActiveRecord::Schema.define(version: 20170705013502) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,11 +19,12 @@ ActiveRecord::Schema.define(version: 20170704230513) do
     t.string "title"
     t.text "details"
     t.date "ends_on"
-    t.decimal "reserved_price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.string "aasm_state"
+    t.decimal "current_price"
+    t.decimal "reserve_price", default: "1.0"
     t.index ["user_id"], name: "index_auctions_on_user_id"
   end
 

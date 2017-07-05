@@ -2,7 +2,26 @@ class Auction < ApplicationRecord
   has_many :bids, dependent: :destroy
   belongs_to :user
 
+
+
+
   validates :title, presence: true, uniqueness: { case_sensitive: false}
+  validates :reserve_price, numericality: { greater_than_or_equal_to: :default_auction_price }
+
+  def default_auction_price
+    self.reserve_price ||= 1
+  end
+
+  before_save :default_values
+
+  def default_values
+    self.current_price ||= self.reserve_price
+  end
+
+  def set_current_price
+    self.reserve_price
+  end
+
   include AASM
   aasm do
     state :draft, initial: true
@@ -27,6 +46,6 @@ class Auction < ApplicationRecord
     event :win do
       transitions from: [:reserve_met], to: :won
     end
-    
+
   end
 end
