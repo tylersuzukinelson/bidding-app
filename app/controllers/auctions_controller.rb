@@ -5,6 +5,7 @@ class AuctionsController < ApplicationController
     @auctions = Auction.all
   end
 
+  # why?
   def index2
     @auctions = Auction.all
   end
@@ -53,6 +54,7 @@ class AuctionsController < ApplicationController
     redirect_to auctions_path, alert: "Auction Deleted"
   end
 
+
   private
 
   def auction_params
@@ -60,6 +62,6 @@ class AuctionsController < ApplicationController
   end
 
   def find_auction
-  @auction = Auction.find params[:id]
+    @auction = Auction.find params[:id]
   end
 end

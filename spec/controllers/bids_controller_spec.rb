@@ -12,6 +12,7 @@ RSpec.describe BidsController, type: :controller do
       end
 
       it "creates a new auction in database" do
+        # ditto auction controller specs
         count_before = Bid.count
         valid_request
         count_after = Bid.count
@@ -30,13 +31,15 @@ RSpec.describe BidsController, type: :controller do
       def valid_request
         delete :destroy, params: {id: bid.id, auction_id: auction.id}
       end
+
       it "destroys a bid from database" do
-        bid
+        # ditto auction controller specs
         count_before = Bid.count
         valid_request
         count_after = Bid.count
         expect(count_after).to eq(count_before - 1)
       end
+
       it "sets a flash message" do
         valid_request
         expect(flash[:notice]).to be

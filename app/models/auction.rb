@@ -3,6 +3,8 @@ class Auction < ApplicationRecord
   belongs_to :user
 
   validates :title, presence: true, uniqueness: { case_sensitive: false}
+  # Doesn't this just check that the reserve_price == reserve_price?
+  # ie. isn't it always true?
   validates :reserve_price, numericality: { greater_than_or_equal_to: :default_auction_price }
 
   def default_auction_price

@@ -22,18 +22,24 @@ RSpec.describe AuctionsController, type: :controller do
         attributes = FactoryGirl.attributes_for(:auction)
         post :create, params: { auction: attributes }
       end
+      
       it 'creates a new auction in database' do
-        count_before = Auction.count
-        valid_request
-        count_after = Auction.count
-        expect(count_after).to eq(count_before + 1)
+        # count_before = Auction.count
+        # valid_request
+        # count_after = Auction.count
+        # expect(count_after).to eq(count_before + 1)
+        expect { valid_request }.to change { Auction.count }.by(1)
       end
+
       it "redirects to the product show page" do
         valid_request
         expect(response).to redirect_to(auctions_path)
       end
+
       it "sets a flash notice message" do
         valid_request
+        # It would be better to verify
+        # that the correct flash[:notice] exists
         expect(flash[:notice]).to be
       end
     end
@@ -42,17 +48,20 @@ RSpec.describe AuctionsController, type: :controller do
       def invalid_request
         post :create, params: {auction: FactoryGirl.attributes_for(:auction, title: nil)}
       end
+
       it "does not create a record in the database part2" do
-        count_before = Auction.count
-        invalid_request
-        count_after = Auction.count
-        expect(count_after).to eq(count_before)
+        # count_before = Auction.count
+        # invalid_request
+        # count_after = Auction.count
+        # expect(count_after).to eq(count_before)
+        expect { invalid_request }.to_not change(Auction, :count)
       end
 
       it "renders the new template" do
         invalid_request
         expect(response).to render_template(:new)
       end
+
       it "sets a flash message" do
         invalid_request
         expect(flash[:alert]).to be
